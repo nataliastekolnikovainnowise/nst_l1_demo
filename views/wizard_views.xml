@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Форма мастера -->
     <record id="view_nst_create_partner_wizard_form" model="ir.ui.view">
         <field name="name">nst.create.partner.wizard.form</field>
         <field name="model">nst.create.partner.wizard</field>
         <field name="arch" type="xml">
-            <form string="Create Partner" version="7.0">
+            <form string="Create Partner">
                 <group>
-                    <field name="name" required="1"/>
+                    <field name="name" required="1" placeholder="Enter partner name"/>
                     <field name="is_company" required="1"/>
                 </group>
                 <footer>
-                    <button string="Create" name="action_create_partner" type="object" class="oe_highlight"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    <button string="Create" 
+                            name="action_create_partner" 
+                            type="object" 
+                            class="btn-primary"/>
+                    <button string="Cancel" 
+                            class="btn-secondary" 
+                            special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
 
-    <!-- Действие для открытия визарда (кнопка CREATE PARTNER) -->
+    <!-- Action для мастера (НЕ дублируем!) -->
     <record id="action_nst_create_partner_wizard" model="ir.actions.act_window">
         <field name="name">Create Partner</field>
         <field name="res_model">nst.create.partner.wizard</field>
@@ -25,10 +31,4 @@
         <field name="target">new</field>
         <field name="context">{}</field>
     </record>
-  <record id="action_nst_create_partner_wizard" model="ir.actions.act_window">
-    <field name="name">Create Partner</field>
-    <field name="res_model">nst.create.partner.wizard</field>
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-  </record>
 </odoo>

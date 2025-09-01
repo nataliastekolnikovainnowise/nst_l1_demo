@@ -1,149 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <!-- Action для визарда (объявлен до использования) -->
-  <record id="action_nst_create_partner_wizard" model="ir.actions.act_window">
-    <field name="name">Create Partner</field>
-    <field name="res_model">nst.create.partner.wizard</field>
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-  </record>
+    <!-- Action для визарда -->
+    <record id="action_nst_create_partner_wizard" model="ir.actions.act_window">
+        <field name="name">Create Partner</field>
+        <field name="res_model">nst.create.partner.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
-  <!-- List (бывший tree) -->
-  <record id="view_nst_l1_demo_list" model="ir.ui.view">
-    <field name="name">nst.l1.demo.list</field>
-    <field name="model">nst.l1.demo</field>
-    <field name="arch" type="xml">
-      <list>
-        <field name="name"/>
-        <field name="text"/>
-        <field name="check1"/>
-        <field name="check2"/>
-        <field name="check_all"/>
-        <field name="select1"/>
-        <field name="select2"/>
-        <field name="is_company"/>
-      </list>
-    </field>
-  </record>
+    <!-- List View -->
+    <record id="view_nst_l1_demo_tree" model="ir.ui.view">
+        <field name="type">list</field>
+        <field name="name">nst.l1.demo.tree</field>
+        <field name="model">nst.l1.demo</field>
+        <field name="arch" type="xml">
+            <list string="L1 Demo Records">
+                <field name="name"/>
+                <field name="text"/>
+                <field name="check1"/>
+                <field name="check2"/>
+                <field name="check_all"/>
+                <field name="select1"/>
+                <field name="select2"/>
+                <field name="is_company"/>
+            </list>
+        </field>
+    </record>
 
-  <!-- Form -->
-  <record id="view_nst_l1_demo_form" model="ir.ui.view">
-    <field name="name">nst.l1.demo.form</field>
-    <field name="model">nst.l1.demo</field>
-    <field name="arch" type="xml">
-      <form string="L1 Record">
-        <header>
-          <!-- Кнопки зависят от is_company (modifiers вместо attrs) -->
-          <button name="action_open_partner_form_person" string="Create Person" type="object" class="oe_highlight">
-            <modifier name="invisible">[["is_company","=",true]]</modifier>
-          </button>
-          <button name="action_open_partner_form_company" string="Create Company" type="object" class="btn-primary">
-            <modifier name="invisible">[["is_company","=",false]]</modifier>
-          </button>
-          <!-- Кнопка визарда -->
-          <button name="%(action_nst_create_partner_wizard)d" string="CREATE PARTNER" type="action" class="btn-secondary"/>
-        </header>
+    <!-- Form View -->
+    <record id="view_nst_l1_demo_form" model="ir.ui.view">
+        <field name="name">nst.l1.demo.form</field>
+        <field name="model">nst.l1.demo</field>
+        <field name="arch" type="xml">
+            <form string="L1 Demo Form">
+                <header>
+                    <button name="action_open_partner_form_person" 
+                            string="Create Person" 
+                            type="object" 
+                            class="btn-primary"/>
+                    
+                    <button name="action_open_partner_form_company" 
+                            string="Create Company" 
+                            type="object" 
+                            class="btn-primary"/>
+                    
+                    <button name="%(action_nst_create_partner_wizard)d" 
+                            string="CREATE PARTNER" 
+                            type="action" 
+                            class="btn-secondary"/>
+                </header>
 
-        <sheet>
-          <group>
-            <group>
-              <field name="name"/>
-              <field name="text"/>
-            </group>
-            <group string="Checks">
-              <field name="check_all"/>
-              <field name="check1"/>
-              <field name="check2"/>
-            </group>
-          </group>
+                <sheet>
+                    <group string="Basic Information">
+                        <field name="name"/>
+                        <field name="text"/>
+                        <field name="check_all"/>
+                        <field name="check1"/>
+                        <field name="check2"/>
+                    </group>
 
-          <notebook>
-            <page string="Selections &amp; Booleans">
-              <group>
-                <group>
-                  <field name="select1"/>
-                  <field name="select2"/>
-                  <field name="is_company"/>
-                </group>
-                <group string="Boolean 1-9">
-                  <!-- Видимость через <modifier>, без attrs -->
-                  <field name="boolean1">
-                    <modifier name="invisible">[["select1","not in",["1"]],["select2","not in",["4"]]]</modifier>
-                  </field>
-                  <field name="boolean2">
-                    <modifier name="invisible">[["select1","not in",["1"]],["select2","not in",["5"]]]</modifier>
-                  </field>
-                  <field name="boolean3">
-                    <modifier name="invisible">[["select1","not in",["1"]],["select2","not in",["6"]]]</modifier>
-                  </field>
-                  <field name="boolean4">
-                    <modifier name="invisible">[["select1","not in",["2"]],["select2","not in",["4"]]]</modifier>
-                  </field>
-                  <field name="boolean5">
-                    <modifier name="invisible">[["select1","not in",["2"]],["select2","not in",["5"]]]</modifier>
-                  </field>
-                  <field name="boolean6">
-                    <modifier name="invisible">[["select1","not in",["2"]],["select2","not in",["6"]]]</modifier>
-                  </field>
-                  <field name="boolean7">
-                    <modifier name="invisible">[["select1","not in",["3"]],["select2","not in",["4"]]]</modifier>
-                  </field>
-                  <field name="boolean8">
-                    <modifier name="invisible">[["select1","not in",["3"]],["select2","not in",["5"]]]</modifier>
-                  </field>
-                  <field name="boolean9">
-                    <modifier name="invisible">[["select1","not in",["3"]],["select2","not in",["6"]]]</modifier>
-                  </field>
-                </group>
-              </group>
-            </page>
+                    <group string="Advanced Fields">
+                        <group>
+                            <field name="select1"/>
+                            <field name="select2"/>
+                            <field name="is_company"/>
+                        </group>
+                        
+                        <group string="Boolean Fields">
+                            <field name="boolean1"/>
+                            <field name="boolean2"/>
+                            <field name="boolean3"/>
+                            <field name="boolean4"/>
+                            <field name="boolean5"/>
+                            <field name="boolean6"/>
+                            <field name="boolean7"/>
+                            <field name="boolean8"/>
+                            <field name="boolean9"/>
+                        </group>
+                    </group>
 
-            <page string="All Field Types (demo)">
-              <group>
-                <group>
-                  <field name="char_demo"/>
-                  <field name="integer_demo"/>
-                  <field name="float_demo"/>
-                  <field name="monetary_demo"/>
-                  <field name="currency_id"/>
-                </group>
-                <group>
-                  <field name="date_demo"/>
-                  <field name="datetime_demo"/>
-                  <field name="selection_demo"/>
-                </group>
-              </group>
-              <group>
-                <field name="html_demo" widget="html"/>
-                <field name="binary_demo" filename="char_demo"/>
-              </group>
-            </page>
+                    <notebook>
+                        <page string="All Field Types">
+                            <group>
+                                <group string="Basic Fields">
+                                    <field name="char_demo"/>
+                                    <field name="integer_demo"/>
+                                    <field name="float_demo"/>
+                                    <field name="date_demo"/>
+                                    <field name="datetime_demo"/>
+                                    <field name="selection_demo"/>
+                                </group>
+                                <group string="Advanced Fields">
+                                    <field name="currency_id"/>
+                                    <field name="monetary_demo"/>
+                                    <field name="binary_demo"/>
+                                </group>
+                            </group>
+                            
+                            <group string="HTML Field">
+                                <field name="html_demo" widget="html"/>
+                            </group>
+                        </page>
 
-            <page string="Relations">
-              <group>
-                <field name="m2o_partner_id"/>
-                <field name="m2m_tags" widget="many2many_tags"/>
-              </group>
-              <group>
-                <field name="o2m_child_ids">
-                  <list editable="bottom">
-                    <field name="name"/>
-                    <field name="note"/>
-                  </list>
-                </field>
-              </group>
-            </page>
+                        <page string="Relations">
+                            <group>
+                                <field name="m2o_partner_id"/>
+                                <field name="m2m_tags" widget="many2many_tags"/>
+                            </group>
+                            
+                            <field name="o2m_child_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
 
-            <page string="Computed">
-              <group>
-                <field name="labels_combined"/>
-              </group>
-            </page>
-          </notebook>
-        </sheet>
-      </form>
-    </field>
-  </record>
-
-  <!-- Action + меню (если ещё не созданы) можно держать отдельно -->
+                        <page string="Computed Fields">
+                            <group>
+                                <field name="labels_combined"/>
+                                <field name="checked_count" readonly="1"/>
+                                <field name="check1_ts" readonly="1"/>
+                                <field name="check2_ts" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>

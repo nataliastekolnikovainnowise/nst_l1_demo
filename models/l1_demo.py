@@ -168,6 +168,29 @@ class NstL1Demo(models.Model):
                     parts.append('{Test 2}')
             r.text = ' '.join(parts)
 
+    @api.onchange('select1', 'select2')
+    def _onchange_selects(self):
+        """Задача 5: Логика отображения boolean1-9"""
+        # Сначала скрываем все
+        for i in range(1, 10):
+            setattr(self, f"boolean{i}", False)
+
+        # Логика по select1 (строки матрицы)
+        if self.select1 == "1":
+            self.boolean1 = self.boolean2 = self.boolean3 = True
+        elif self.select1 == "2":
+            self.boolean4 = self.boolean5 = self.boolean6 = True
+        elif self.select1 == "3":
+            self.boolean7 = self.boolean8 = self.boolean9 = True
+
+        # Логика по select2 (столбцы матрицы)
+        if self.select2 == "4":
+            self.boolean1 = self.boolean4 = self.boolean7 = True
+        elif self.select2 == "5":
+            self.boolean2 = self.boolean5 = self.boolean8 = True
+        elif self.select2 == "6":
+            self.boolean3 = self.boolean6 = self.boolean9 = True
+
     # ------------ ДЕКОРАТОРЫ: constrains ------------
     @api.constrains('name')
     def _check_name_len(self):

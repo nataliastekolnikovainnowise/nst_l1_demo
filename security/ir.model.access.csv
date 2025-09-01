@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_nst_l1_demo_child,nst_l1_demo_child,nst_l1_demo.model_nst_l1_demo_child,base.group_user,1,1,1,1
+access_nst_l1_demo,nst.l1.demo,model_nst_l1_demo,,1,1,1,1
+access_nst_l1_demo_child,nst.l1.demo.child,model_nst_l1_demo_child,,1,1,1,1
+access_nst_create_partner_wizard,nst.create.partner.wizard,model_nst_create_partner_wizard,,1,1,1,1

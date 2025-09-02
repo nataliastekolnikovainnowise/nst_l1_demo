@@ -90,11 +90,24 @@
         <field name="name">nst.l1.demo.calendar</field>
         <field name="model">nst.l1.demo</field>
         <field name="arch" type="xml">
-            <calendar string="L1 Demo Calendar" 
-                      date_start="date_demo">
+            <calendar string="L1 Demo Calendar" date_start="date_demo">
                 <field name="name"/>
                 <field name="text"/>
             </calendar>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_nst_l1_demo_pivot" model="ir.ui.view">
+        <field name="name">nst.l1.demo.pivot</field>
+        <field name="model">nst.l1.demo</field>
+        <field name="arch" type="xml">
+            <pivot string="L1 Demo Pivot Analysis">
+                <field name="is_company" type="row"/>
+                <field name="check1" type="col"/>
+                <field name="integer_demo" type="measure"/>
+                <field name="float_demo" type="measure"/>
+            </pivot>
         </field>
     </record>
 
@@ -201,3 +214,4 @@
         </field>
     </record>
 </odoo>
+

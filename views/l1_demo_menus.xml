@@ -5,7 +5,7 @@
     <record id="action_nst_l1_demo" model="ir.actions.act_window">
         <field name="name">L1 Records</field>
         <field name="res_model">nst.l1.demo</field>
-        <field name="view_mode">list,kanban,form,graph</field>
+        <field name="view_mode">list,kanban,graph,calendar,form</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

@@ -67,7 +67,7 @@ class NstL1Demo(models.Model):
     check1_ts = fields.Datetime(string="Check1 TS")
     check2_ts = fields.Datetime(string="Check2 TS")
 
-    # пример вычисляемого поля с depends
+    # пример вычисляемого поля с depends (БЕЗ bool() операций)
     checked_count = fields.Integer(string="Checked Count",
                                    compute="_compute_checked_count",
                                    store=False)
@@ -77,8 +77,8 @@ class NstL1Demo(models.Model):
     def _compute_checked_count(self):
         for r in self:
             r.checked_count = sum([
-                bool(r.check1), bool(r.check2), bool(r.boolean1), bool(r.boolean2), bool(r.boolean3),
-                bool(r.boolean4), bool(r.boolean5), bool(r.boolean6), bool(r.boolean7), bool(r.boolean8), bool(r.boolean9)
+                r.check1, r.check2, r.boolean1, r.boolean2, r.boolean3,
+                r.boolean4, r.boolean5, r.boolean6, r.boolean7, r.boolean8, r.boolean9
             ])
 
     @api.depends('check1', 'check2', 'check1_ts', 'check2_ts')

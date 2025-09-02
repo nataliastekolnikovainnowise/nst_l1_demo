@@ -118,16 +118,20 @@
         <field name="arch" type="xml">
             <form string="L1 Demo Form">
                 <header>
+                    <!-- Задача 6: Кнопки показываются в зависимости от is_company -->
                     <button name="action_open_partner_form_person" 
                             string="Create Person" 
                             type="object" 
-                            class="btn-primary"/>
+                            class="btn-primary"
+                            invisible="is_company"/>
                     
                     <button name="action_open_partner_form_company" 
                             string="Create Company" 
                             type="object" 
-                            class="btn-primary"/>
+                            class="btn-primary"
+                            invisible="not is_company"/>
                     
+                    <!-- Задача 7: Wizard кнопка всегда видна -->
                     <button name="%(action_nst_create_partner_wizard)d" 
                             string="CREATE PARTNER" 
                             type="action" 
@@ -135,6 +139,7 @@
                 </header>
 
                 <sheet>
+                    <!-- Задача 2: Поля всегда видимые при создании -->
                     <group string="Basic Information">
                         <field name="name"/>
                         <field name="text"/>
@@ -143,13 +148,15 @@
                         <field name="check2"/>
                     </group>
 
-                    <group string="Advanced Fields">
+                    <!-- Задача 2: Поля видимые только после сохранения -->
+                    <group string="Advanced Fields" invisible="not id">
                         <group>
                             <field name="select1"/>
                             <field name="select2"/>
                             <field name="is_company"/>
                         </group>
                         
+                        <!-- Задача 5: Boolean поля с логикой видимости -->
                         <group string="Boolean Fields">
                             <field name="boolean1" invisible="select1 not in ['1'] and select2 not in ['4']"/>
                             <field name="boolean2" invisible="select1 not in ['1'] and select2 not in ['5']"/>
@@ -163,7 +170,8 @@
                         </group>
                     </group>
 
-                    <notebook>
+                    <!-- Задача 2: Notebook скрыт до сохранения -->
+                    <notebook invisible="not id">
                         <page string="All Field Types">
                             <group>
                                 <group string="Basic Fields">
@@ -212,6 +220,5 @@
                 </sheet>
             </form>
         </field>
-    </record>
+    </record>   
 </odoo>
-

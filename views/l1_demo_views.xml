@@ -73,6 +73,18 @@
         </field>
     </record>
 
+    <!-- Graph View -->
+    <record id="view_nst_l1_demo_graph" model="ir.ui.view">
+        <field name="name">nst.l1.demo.graph</field>
+        <field name="model">nst.l1.demo</field>
+        <field name="arch" type="xml">
+            <graph string="L1 Demo Statistics" type="bar">
+                <field name="is_company" type="row"/>
+                <field name="integer_demo" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
     <!-- Form View -->
     <record id="view_nst_l1_demo_form" model="ir.ui.view">
         <field name="name">nst.l1.demo.form</field>

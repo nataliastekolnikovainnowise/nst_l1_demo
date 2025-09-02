@@ -20,10 +20,56 @@
                 <field name="check1"/>
                 <field name="check2"/>
                 <field name="check_all"/>
-                <field name="select1"/>
-                <field name="select2"/>
                 <field name="is_company"/>
+                <field name="checked_count"/>
             </list>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_nst_l1_demo_kanban" model="ir.ui.view">
+        <field name="name">nst.l1.demo.kanban</field>
+        <field name="model">nst.l1.demo</field>
+        <field name="arch" type="xml">
+            <kanban string="L1 Demo Kanban" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="text"/>
+                <field name="is_company"/>
+                <field name="checked_count"/>
+                <field name="check1"/>
+                <field name="check2"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <strong><field name="name"/></strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_content">
+                                <div class="o_kanban_card_manage_pane">
+                                    <div t-if="record.text.value" class="text-muted">
+                                        <field name="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_footer">
+                                <div class="o_kanban_footer_left">
+                                    <span t-if="record.is_company.raw_value" class="badge badge-info">Company</span>
+                                    <span t-if="!record.is_company.raw_value" class="badge badge-secondary">Person</span>
+                                </div>
+                                <div class="o_kanban_footer_right">
+                                    <span class="badge badge-primary">
+                                        Checked: <field name="checked_count"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 
@@ -67,15 +113,15 @@
                         </group>
                         
                         <group string="Boolean Fields">
-                            <field name="boolean1"/>
-                            <field name="boolean2"/>
-                            <field name="boolean3"/>
-                            <field name="boolean4"/>
-                            <field name="boolean5"/>
-                            <field name="boolean6"/>
-                            <field name="boolean7"/>
-                            <field name="boolean8"/>
-                            <field name="boolean9"/>
+                            <field name="boolean1" invisible="select1 not in ['1'] and select2 not in ['4']"/>
+                            <field name="boolean2" invisible="select1 not in ['1'] and select2 not in ['5']"/>
+                            <field name="boolean3" invisible="select1 not in ['1'] and select2 not in ['6']"/>
+                            <field name="boolean4" invisible="select1 not in ['2'] and select2 not in ['4']"/>
+                            <field name="boolean5" invisible="select1 not in ['2'] and select2 not in ['5']"/>
+                            <field name="boolean6" invisible="select1 not in ['2'] and select2 not in ['6']"/>
+                            <field name="boolean7" invisible="select1 not in ['3'] and select2 not in ['4']"/>
+                            <field name="boolean8" invisible="select1 not in ['3'] and select2 not in ['5']"/>
+                            <field name="boolean9" invisible="select1 not in ['3'] and select2 not in ['6']"/>
                         </group>
                     </group>
 
